@@ -656,6 +656,12 @@ input.is-wrong {
   color: #ffe09a;
 }
 
+#feedback[data-state="required"] {
+  border-color: #d98b52;
+  background: #3b2518;
+  color: #ffd0a8;
+}
+
 #completion[data-state="skipped"] {
   border: 1px solid #e6b94f;
   border-radius: 12px;

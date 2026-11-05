@@ -156,7 +156,8 @@ answerForm.addEventListener("submit", event => {
     const artist = normalizeAnswer(document.getElementById("artist-name").value);
 
     if (!title && !artist) {
-      skipQuestion();
+      setFeedback("Enter the song title or artist, or choose Skip question.", "required");
+      document.getElementById("song-title").focus();
       return;
     } else {
       const titleIsCorrect = title === normalizeAnswer(track.title);
@@ -173,7 +174,7 @@ answerForm.addEventListener("submit", event => {
   } else {
     const selectedAnswer = answerForm.querySelector('input[name="answer"]:checked');
     if (!selectedAnswer) {
-      skipQuestion();
+      setFeedback("Choose an answer, or choose Skip question.", "required");
       return;
     } else if (selectedAnswer.value === track.id) {
       points = 1;
@@ -228,12 +229,23 @@ skipButton.addEventListener("click", skipQuestion);
 if (mode === "easy") {
   answerForm.addEventListener("change", event => {
     if (event.target.matches('input[name="answer"]')) {
+      if (feedback.dataset.state === "required") {
+        feedback.textContent = "";
+        feedback.dataset.state = "";
+      }
       answerForm.querySelectorAll(".answer-option").forEach(label => {
         label.classList.toggle(
           "is-selected",
           label.querySelector("input").checked
         );
       });
+    }
+  });
+} else {
+  answerForm.addEventListener("input", () => {
+    if (feedback.dataset.state === "required") {
+      feedback.textContent = "";
+      feedback.dataset.state = "";
     }
   });
 }
