@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Guess the Song — Easy Mode</title>
+</head>
+<body>
+  <main>
+    <h1>Guess the Song — Easy Mode</h1>
+
+    <p>Question <span id="question-number">1</span></p>
+    <p>Score: <span id="score">0</span></p>
+    <p>Current streak: <span id="streak">0</span></p>
+
+    <h2>Listen to the 7 second clip</h2>
+    <audio id="song-audio" controls></audio>
+
+    <form id="answer-form">
+      <fieldset>
+        <legend>Which song and artist did you hear?</legend>
+
+        <label>
+          <input type="radio" name="answer" value="option-1" required>
+          Song One — Artist One
+        </label>
+        <br>
+
+        <label>
+          <input type="radio" name="answer" value="option-2">
+          Song Two — Artist Two
+        </label>
+        <br>
+
+        <label>
+          <input type="radio" name="answer" value="option-3">
+          Song Three — Artist Three
+        </label>
+        <br>
+
+        <label>
+          <input type="radio" name="answer" value="option-4">
+          Song Four — Artist Four
+        </label>
+      </fieldset>
+
+      <button type="submit">Submit answer</button>
+    </form>
+
+    <p id="feedback" aria-live="polite"></p>
+
+    <button id="skip-button" type="button">Skip this song</button>
+  </main>
+</body>
+</html>

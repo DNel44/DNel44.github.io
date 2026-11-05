@@ -1,26 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Guess the song </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Guess the Song</title>
 </head>
 <body>
-    <h1>Turn your spotify playlists into a guessing game!</h1>
-    <p>Add a public Spotify playlist, listen to a short clip from one of its songs, and see if you can name both the song and the artist.</p>
+  <h1>Turn your Spotify playlists into a guessing game!</h1>
+  <p>
+    Add a public Spotify playlist, listen to a short clip from one of its songs,
+    and see if you can name both the song and the artist.
+  </p>
 
-    <h1>Difficulty Levels</h1>
+  <h2>Difficulty Levels</h2>
 
-<button type="button" data-difficulty="classic" aria-pressed="false"
-        onclick="setDifficulty('classic')">Classic
-</button>
+  <button
+    type="button"
+    data-difficulty="classic"
+    aria-pressed="false"
+    onclick="setDifficulty('classic')"
+  >
+    Classic
+  </button>
 
-<button type="button" data-difficulty="easy" aria-pressed="false"
-        onclick="setDifficulty('easy')">Easy 
-</button>
+  <button
+    type="button"
+    data-difficulty="easy"
+    aria-pressed="false"
+    onclick="setDifficulty('easy')"
+  >
+    Easy
+  </button>
 
-<script>
+  <form id="playlist-form">
+    <h2>Please paste the playlist URL</h2>
+
+    <label for="playlistUrl">Spotify playlist URL</label>
+    <input
+      type="url"
+      id="playlistUrl"
+      name="playlistUrl"
+      placeholder="https://open.spotify.com/playlist/..."
+      required
+    >
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="form-message" aria-live="polite"></p>
+
+  <h2>How to play</h2>
+  <ol>
+    <li>Pick a difficulty level.</li>
+    <li>Copy the URL of a public Spotify playlist.</li>
+    <li>Paste the URL in the input field above.</li>
+    <li>Click Submit to start the quiz.</li>
+    <li>Listen to the clip and try to guess the song and artist.</li>
+  </ol>
+
+  <h2>Classic mode</h2>
+  <p>
+    In Classic mode, you will hear a 5-second clip from the playlist.
+    Guess the song title and artist. If you get it right, you move on to the
+    next song. If you get it wrong, you can try again or skip.
+  </p>
+
+  <h2>Easy mode</h2>
+  <p>
+    In Easy mode, you will hear a 7-second clip and choose the song and artist
+    from a list of options. This mode is not connected yet.
+  </p>
+
+  <script>
   function setDifficulty(difficulty) {
     document.querySelectorAll("[data-difficulty]").forEach(button => {
       button.setAttribute(
@@ -29,27 +81,47 @@
       );
     });
   }
+
+  document
+    .getElementById("playlist-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const message = document.getElementById("form-message");
+      const selectedButton = document.querySelector(
+        '[data-difficulty][aria-pressed="true"]'
+      );
+
+      if (!selectedButton) {
+        message.textContent = "Please choose a difficulty level first.";
+        return;
+      }
+
+      const playlistUrl = document.getElementById("playlistUrl").value.trim();
+      const url = new URL(playlistUrl);
+      const isSpotifyPlaylist =
+        url.protocol === "https:" &&
+        url.hostname === "open.spotify.com" &&
+        /^\/playlist\/[^/]+\/?$/.test(url.pathname);
+
+      if (!isSpotifyPlaylist) {
+        message.textContent =
+          "Please enter a Spotify playlist link, such as https://open.spotify.com/playlist/...";
+        return;
+      }
+
+      const difficulty = selectedButton.dataset.difficulty;
+      const params = new URLSearchParams({
+        difficulty: difficulty,
+        playlist: playlistUrl
+      });
+
+      const quizPage = difficulty === "classic"
+        ? "quizz_classic.html"
+        : "quizz_easy.html";
+
+      window.location.href = `${quizPage}?${params.toString()}`;
+    });
 </script>
-
-    <h1>Please paste the playlist URL</h1>
-    <input type="text" id="playlistUrl" placeholder="https://open.spotify.com/playlist/..."> 
-    <button onclick="submitPlaylist()">Submit</button>
-
-    <h2>How to play</h2>
-    <ol>
-        <li>Pick your difficulty level from classic to easy</li>
-        <li>Copy the URL of a public Spotify playlist</li>
-        <li>Paste the URL in the input field above</li>
-        <li>Click "Submit" to start the quiz</li>
-        <li>Listen to the short clip and try to guess the song and artist</li>
-    </ol>
-
-    <h2>Classic mode</h2>
-    <p>In classic mode, you will hear a 5-second clip of a song from the playlist. You will have to guess both the song title and the artist. If you get it right, you move on to the next song. If you get it wrong, you can try again or skip to the next song.</p>
-    <h2>Easy mode</h2>
-    <p>In easy mode, you will hear a 7-second clip of a song from the playlist. You will have to guess both the song title and the artist from a list of options. If you get it right, you move on to the next song. If you get it wrong, you can try again or skip to the next song.</p>
-
-
-
 </body>
 </html>
