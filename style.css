@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #121212;
+  color: #f5f5f5;
+}
+
+body {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 64px 0 80px;
+  line-height: 1.6;
+  background:
+    radial-gradient(ellipse at 50% 0, rgb(29 185 84 / 14%), transparent 42%),
+    #121212;
+}
+
+h1,
+h2,
+p,
+ol {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 14px;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+h1:first-of-type {
+  max-width: 650px;
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+}
+
+body > p {
+  max-width: 620px;
+  margin-bottom: 48px;
+  color: #b3b3b3;
+  font-size: 1.1rem;
+}
+
+h1:not(:first-of-type) {
+  margin-top: 42px;
+  font-size: 1.6rem;
+}
+
+button {
+  min-height: 44px;
+  margin: 0 8px 8px 0;
+  padding: 10px 20px;
+  border: 1px solid #535353;
+  border-radius: 999px;
+  background: #242424;
+  color: #f5f5f5;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+button:hover {
+  border-color: #ffffff;
+  transform: scale(1.03);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #1ed760;
+  outline-offset: 3px;
+}
+
+button[data-difficulty][aria-pressed="true"] {
+  border-color: #1ed760;
+  background: #1ed760;
+  color: #101010;
+}
+
+#playlistUrl {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  margin: 14px 0 12px;
+  padding: 12px 16px;
+  border: 1px solid #535353;
+  border-radius: 8px;
+  background: #242424;
+  color: #ffffff;
+  font: inherit;
+}
+
+#playlistUrl::placeholder {
+  color: #a7a7a7;
+}
+
+body > button:not([data-difficulty]) {
+  border-color: #1ed760;
+  background: #1ed760;
+  color: #101010;
+}
+
+body > button:not([data-difficulty]):hover {
+  border-color: #3be477;
+  background: #3be477;
+}
+
+h2 {
+  margin-top: 44px;
+  margin-bottom: 12px;
+  padding-top: 24px;
+  border-top: 1px solid #2a2a2a;
+  font-size: 1.35rem;
+}
+
+ol {
+  padding-left: 24px;
+  color: #b3b3b3;
+}
+
+li {
+  padding: 4px 0 4px 5px;
+}
+
+li::marker {
+  color: #1ed760;
+  font-weight: 700;
+}
+
+h2 + p {
+  color: #b3b3b3;
+}
+
+@media (max-width: 520px) {
+  body {
+    width: min(100% - 32px, 760px);
+    padding-top: 40px;
+  }
+
+  body > p {
+    margin-bottom: 36px;
+  }
+
+  button {
+    margin-right: 4px;
+    padding-inline: 16px;
+  }
+}
