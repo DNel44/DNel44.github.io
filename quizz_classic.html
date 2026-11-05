@@ -1,33 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Guess the song </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="quiz.js" defer></script>
+  <title>Guess the Song — Classic Mode</title>
 </head>
-  <h1>Guess the Song</h1>
+<body data-mode="classic">
+  <header class="quiz-header">
+    <a class="menu-button" href="index.html">Menu</a>
+  </header>
 
-  <p>Question <span id="question-number">1</span></p>
-  <p>Score: <span id="score">0</span></p>
-  <p>Current streak: <span id="streak">0</span></p>
+  <main class="quiz-main">
+    <h1>Guess the Song</h1>
+    <p id="playlist-info"></p>
+    <p id="audio-status" role="status"></p>
 
-  <h2>Listen to the clip</h2>
-  <audio id="song-audio" controls></audio>
+    <section aria-label="Quiz score">
+      <p>Question <span id="question-number">1</span> of <span id="question-total">4</span></p>
+      <p>Score: <span id="score">0</span></p>
+      <p>Current streak: <span id="streak">0</span></p>
+    </section>
 
-  <h2>What song is this?</h2>
-  <form id="answer-form">
-    <label for="song-title">Song title</label>
-    <input id="song-title" type="text">
+    <p id="completion" aria-live="polite" hidden></p>
 
-    <label for="artist-name">Artist name</label>
-    <input id="artist-name" type="text">
+    <section id="question-panel">
+      <section class="audio-card" aria-label="Audio player">
+        <div class="audio-card-heading">
+          <div class="audio-art" aria-hidden="true">♫</div>
+          <div>
+            <p class="audio-eyebrow">CLASSIC MODE · 5 SECOND CLIP</p>
+            <h2>Listen to the clip</h2>
+            <p class="audio-caption">The song details stay hidden until you answer.</p>
+          </div>
+        </div>
+        <div class="audio-wave" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <audio id="song-audio" controls aria-label="Song clip"></audio>
+      </section>
 
-    <button type="submit">Submit answer</button>
-  </form>
+      <h2 class="answer-heading">What song is this?</h2>
+      <form id="answer-form">
+        <div class="classic-answer-fields">
+          <p>
+            <label for="song-title">Song title</label>
+            <input id="song-title" name="song-title" type="text" autocomplete="off" placeholder="Type the song title...">
+          </p>
+          <p>
+            <label for="artist-name">Artist name</label>
+            <input id="artist-name" name="artist-name" type="text" autocomplete="off" placeholder="Who performs it?">
+          </p>
+        </div>
+        <div class="answer-submit-row">
+          <button type="submit">Submit answer</button>
+          <button id="skip-button" type="button">Skip question</button>
+        </div>
+      </form>
 
-  <p id="feedback" aria-live="polite"></p>
-
-  <button id="skip-button" type="button">Skip this song</button>
+      <p id="feedback" aria-live="polite"></p>
+      <button id="next-button" type="button" hidden>Next question</button>
+    </section>
+  </main>
 </body>
 </html>

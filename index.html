@@ -56,20 +56,21 @@
     <li>Copy the URL of a public Spotify playlist.</li>
     <li>Paste the URL in the input field above.</li>
     <li>Click Submit to start the quiz.</li>
-    <li>Listen to the clip and try to guess the song and artist.</li>
+    <li>Listen to the clip and try to guess the song and artist. Leave your answer blank and submit to skip.</li>
   </ol>
 
   <h2>Classic mode</h2>
   <p>
     In Classic mode, you will hear a 5-second clip from the playlist.
-    Guess the song title and artist. If you get it right, you move on to the
-    next song. If you get it wrong, you can try again or skip.
+    Guess the song title and artist. Get both right for 1 point, or one right
+    for 0.5 points. An incorrect or blank answer earns 0 points.
   </p>
 
   <h2>Easy mode</h2>
   <p>
     In Easy mode, you will hear a 7-second clip and choose the song and artist
-    from a list of options. This mode is not connected yet.
+    from a list of options. A correct answer earns 1 point; an incorrect or
+    blank answer earns 0 points.
   </p>
 
   <script>
@@ -98,7 +99,14 @@
       }
 
       const playlistUrl = document.getElementById("playlistUrl").value.trim();
-      const url = new URL(playlistUrl);
+      let url;
+      try {
+        url = new URL(playlistUrl);
+      } catch {
+        message.textContent = "Please enter a valid Spotify playlist URL.";
+        return;
+      }
+
       const isSpotifyPlaylist =
         url.protocol === "https:" &&
         url.hostname === "open.spotify.com" &&
@@ -111,14 +119,10 @@
       }
 
       const difficulty = selectedButton.dataset.difficulty;
-      const params = new URLSearchParams({
-        difficulty: difficulty,
-        playlist: playlistUrl
-      });
-
       const quizPage = difficulty === "classic"
         ? "quizz_classic.html"
         : "quizz_easy.html";
+      const params = new URLSearchParams({ playlist: playlistUrl });
 
       window.location.href = `${quizPage}?${params.toString()}`;
     });
