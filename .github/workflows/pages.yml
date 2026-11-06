@@ -28,7 +28,7 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare site files and API configuration
+      - name: Prepare site files with API key
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
@@ -39,7 +39,23 @@ jobs:
 
           mkdir -p _site
           cp index.html quizz_classic.html quizz_easy.html quiz.js style.css _site/
-          printf 'window.YOUTUBE_API_KEY = "%s";\n' "$YOUTUBE_API_KEY" > _site/youtube-config.js
+          if [[ ! "$YOUTUBE_API_KEY" =~ ^[A-Za-z0-9_-]+$ ]]; then
+            echo "::error::YOUTUBE_API_KEY contains unexpected characters."
+            exit 1
+          fi
+
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          key = os.environ["YOUTUBE_API_KEY"]
+          for name in ("quizz_classic.html", "quizz_easy.html"):
+              page = Path("_site") / name
+              content = page.read_text()
+              if content.count("__YOUTUBE_API_KEY__") != 1:
+                  raise SystemExit(f"Expected one API key placeholder in {name}.")
+              page.write_text(content.replace("__YOUTUBE_API_KEY__", key))
+          PY
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

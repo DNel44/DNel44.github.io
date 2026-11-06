@@ -88,7 +88,7 @@ async function loadPlaylistTracks() {
   const apiKey = window.YOUTUBE_API_KEY;
   if (!apiKey || apiKey === "PASTE_YOUR_RESTRICTED_API_KEY_HERE") {
     throw new Error(
-      "Add your restricted YouTube API key to youtube-config.js, then reload this page."
+      "The YouTube API key is missing. Check the YOUTUBE_API_KEY GitHub Actions secret and redeploy the site."
     );
   }
   if (!playlistId) {
