@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="youtube-config.js"></script>
   <script src="quiz.js" defer></script>
   <title>Guess the Song — Classic Mode</title>
 </head>
@@ -12,13 +13,13 @@
     <a class="menu-button" href="index.html">Menu</a>
   </header>
 
-  <main class="quiz-main">
+  <main>
     <h1>Guess the Song</h1>
     <p id="playlist-info"></p>
     <p id="audio-status" role="status"></p>
 
     <section aria-label="Quiz score">
-      <p>Question <span id="question-number">1</span> of <span id="question-total">4</span></p>
+      <p>Question <span id="question-number">—</span> of <span id="question-total">—</span></p>
       <p>Score: <span id="score">0</span></p>
       <p>Current streak: <span id="streak">0</span></p>
     </section>
@@ -26,26 +27,26 @@
     <p id="completion" aria-live="polite" hidden></p>
 
     <section id="question-panel">
-      <section class="audio-card" aria-label="Audio player">
+      <section class="audio-card" aria-label="YouTube video player">
         <div class="audio-card-heading">
-          <div class="audio-art" aria-hidden="true">♫</div>
+          <div class="audio-art" aria-hidden="true">▶</div>
           <div>
             <p class="audio-eyebrow">CLASSIC MODE · 5 SECOND CLIP</p>
-            <h2>Listen to the clip</h2>
-            <p class="audio-caption">The song details stay hidden until you answer.</p>
+            <h2>Watch the clip</h2>
+            <p class="audio-caption">Hear a randomly selected 5-second segment, then guess the song and artist.</p>
           </div>
         </div>
-        <div class="audio-wave" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
+        <div id="youtube-player" class="youtube-player-frame"></div>
+        <div class="player-controls">
+          <button id="play-clip-button" type="button" disabled>Play random 5-second clip</button>
+          <button id="pause-clip-button" type="button" disabled>Pause clip</button>
+          <p id="player-status" role="status" aria-live="polite">Preparing YouTube player...</p>
         </div>
-        <audio id="song-audio" controls aria-label="Song clip"></audio>
+        <div class="youtube-player-link">
+          <a id="playlist-link" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+            Open current video on YouTube
+          </a>
+        </div>
       </section>
 
       <h2 class="answer-heading">What song is this?</h2>

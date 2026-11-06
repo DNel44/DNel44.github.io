@@ -5,20 +5,19 @@
 :root {
   color-scheme: dark;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #101412;
-  color: #f2f5f2;
+  background: #110f17;
+  color: #f4f0fa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  --page: #101412;
-  --panel: #191f1b;
-  --panel-raised: #202822;
-  --panel-border: #ffffff16;
-  --text: #f2f5f2;
-  --muted: #a7b0a9;
-  --accent: #a5e66f;
-  --accent-strong: #8bd957;
-  --accent-ink: #172114;
+  --page: #110f17;
+  --panel: #1b1722;
+  --panel-raised: #272131;
+  --panel-border: #ffffff19;
+  --text: #f4f0fa;
+  --muted: #b1a9bd;
+  --accent: #c5a8ff;
+  --accent-ink: #21172e;
 }
 
 body {
@@ -28,13 +27,12 @@ body {
   padding: 56px 0 80px;
   line-height: 1.65;
   background:
-    radial-gradient(ellipse at 50% 0, rgb(55 117 72 / 22%), transparent 42%),
+    radial-gradient(ellipse at 50% 0, rgb(111 76 153 / 24%), transparent 44%),
     var(--page);
 }
 
 h1,
 h2,
-h3,
 p,
 ol,
 ul {
@@ -60,11 +58,6 @@ h2 {
   font-size: 1.35rem;
   line-height: 1.3;
   letter-spacing: -0.02em;
-}
-
-h3 {
-  margin-bottom: 10px;
-  font-size: 1.05rem;
 }
 
 p,
@@ -118,7 +111,7 @@ button {
 
 button:hover {
   border-color: #ffffff65;
-  background: #29332b;
+  background: #342b40;
   transform: translateY(-1px);
 }
 
@@ -183,24 +176,11 @@ main > section[aria-label="Quiz score"] p {
   padding: 24px;
   border: 1px solid var(--panel-border);
   border-radius: 18px;
-  background: linear-gradient(145deg, #1b231d, #151a16);
-}
-
-#question-panel h2:first-child {
-  margin-top: 0;
+  background: linear-gradient(145deg, #211b2a, #17141d);
 }
 
 #question-panel form {
   margin-bottom: 16px;
-}
-
-#question-panel form p:last-of-type {
-  margin-bottom: 0;
-}
-
-#question-panel audio {
-  width: 100%;
-  max-width: 560px;
 }
 
 #answer-options {
@@ -217,7 +197,7 @@ main > section[aria-label="Quiz score"] p {
   padding: 12px 15px;
   border: 1px solid #ffffff20;
   border-radius: 12px;
-  background: #141a16;
+  background: #18141e;
   color: var(--text);
   cursor: pointer;
   transition: background-color 150ms ease, border-color 150ms ease;
@@ -225,12 +205,12 @@ main > section[aria-label="Quiz score"] p {
 
 .answer-option:hover {
   border-color: #ffffff55;
-  background: #202a22;
+  background: #2a2234;
 }
 
 .answer-option.is-selected {
   border-color: var(--accent);
-  background: rgb(165 230 111 / 12%);
+  background: rgb(197 168 255 / 14%);
 }
 
 .answer-option input[type="radio"] {
@@ -267,6 +247,56 @@ input:disabled {
   }
 }
 
+.youtube-player-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid #ffffff20;
+  border-radius: 12px;
+  background: #100e15;
+}
+
+.youtube-player-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.player-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 14px;
+}
+
+.player-controls button {
+  margin: 0;
+}
+
+.player-controls p {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.youtube-player-link {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.youtube-player-link a {
+  color: #d5c1ff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.youtube-player-link a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 body {
   width: min(100% - 48px, 920px);
   padding-top: 44px;
@@ -285,17 +315,10 @@ form {
 .quiz-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 30px;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--panel-border);
-}
-
-.brand {
-  color: var(--text);
-  font-size: 1.05rem;
-  font-weight: 750;
-  text-decoration: none;
 }
 
 .menu-button {
@@ -325,9 +348,9 @@ form {
 #audio-status {
   margin: 12px 0 20px;
   padding: 10px 14px;
-  border-left: 3px solid #759b83;
+  border-left: 3px solid #866ca8;
   border-radius: 0 8px 8px 0;
-  background: #18211b;
+  background: #211a2b;
   font-size: 0.9rem;
 }
 
@@ -347,8 +370,8 @@ main > section[aria-label="Quiz score"] {
   border: 1px solid #ffffff18;
   border-radius: 16px;
   background:
-    radial-gradient(ellipse at 10% 0, rgb(165 230 111 / 12%), transparent 58%),
-    #131a15;
+    radial-gradient(ellipse at 10% 0, rgb(197 168 255 / 13%), transparent 58%),
+    #17131d;
 }
 
 .audio-card-heading {
@@ -363,9 +386,9 @@ main > section[aria-label="Quiz score"] {
   height: 58px;
   flex: 0 0 58px;
   place-items: center;
-  border: 1px solid rgb(165 230 111 / 25%);
+  border: 1px solid rgb(197 168 255 / 30%);
   border-radius: 13px;
-  background: linear-gradient(145deg, #324a34, #1d2b21);
+  background: linear-gradient(145deg, #49345f, #282035);
   color: var(--accent);
   font-size: 1.7rem;
 }
@@ -386,36 +409,6 @@ main > section[aria-label="Quiz score"] {
 .audio-caption {
   margin: 0;
   font-size: 0.88rem;
-}
-
-.audio-wave {
-  display: flex;
-  height: 32px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4px;
-  margin: 20px 2px 8px;
-  opacity: 0.72;
-}
-
-.audio-wave span {
-  width: 3px;
-  height: 25%;
-  border-radius: 3px;
-  background: var(--accent);
-}
-
-.audio-wave span:nth-child(4n + 1) { height: 42%; }
-.audio-wave span:nth-child(4n + 2) { height: 78%; }
-.audio-wave span:nth-child(4n + 3) { height: 55%; }
-.audio-wave span:nth-child(7n) { height: 100%; }
-
-#question-panel .audio-card audio {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: 42px;
-  margin: 0;
 }
 
 #question-panel .answer-heading {
@@ -459,9 +452,9 @@ main > section[aria-label="Quiz score"] {
   width: 21px;
   height: 21px;
   flex-basis: 21px;
-  border: 2px solid #8e9b90;
+  border: 2px solid #9a8eaa;
   border-radius: 50%;
-  background: #111713;
+  background: #17131d;
   cursor: pointer;
 }
 
@@ -482,13 +475,11 @@ main > section[aria-label="Quiz score"] {
   outline-offset: 3px;
 }
 
-.answer-option.is-correct,
 input.is-correct {
   border-color: #68d391;
   background: rgb(40 167 97 / 13%);
 }
 
-.answer-option.is-wrong,
 input.is-wrong {
   border-color: #ed7373;
   background: rgb(217 83 79 / 13%);
@@ -583,15 +574,20 @@ input.is-wrong {
   min-height: 48px;
 }
 
-.quiz-header {
-  justify-content: flex-start;
+.setup-note {
+  margin: -20px 0 34px;
+  padding: 12px 16px;
+  border-left: 3px solid #866ca8;
+  border-radius: 0 8px 8px 0;
+  background: #211a2b;
+  font-size: 0.9rem;
 }
 
 .menu-button {
   min-height: 44px;
   padding-inline: 22px;
   border-color: #ffffff38;
-  background: #202822;
+  background: #272131;
 }
 
 #question-panel form {
@@ -613,12 +609,6 @@ input.is-wrong {
   min-height: 58px;
   margin-top: 10px;
   padding-inline: 16px;
-}
-
-.answer-submit-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 26px;
 }
 
 #question-panel .answer-submit-row button[type="submit"] {
@@ -684,20 +674,6 @@ input.is-wrong {
   box-shadow: inset 0 0 0 1px #f06c6c55;
 }
 
-#question-panel .answer-option.is-selected.is-correct {
-  border: 2px solid #48c879;
-  background: #123523;
-  color: #c8f7d7;
-  box-shadow: inset 0 0 0 1px #48c87955;
-}
-
-#question-panel .answer-option.is-selected.is-wrong {
-  border: 2px solid #f06c6c;
-  background: #411d20;
-  color: #ffc0c0;
-  box-shadow: inset 0 0 0 1px #f06c6c55;
-}
-
 #question-panel .answer-option.is-correct input[type="radio"] {
   border-color: #70e398;
   background: #194d2e;
@@ -746,7 +722,7 @@ body:has(.classic-answer-fields) {
 #question-panel .classic-answer-fields label {
   display: block;
   margin-bottom: 12px;
-  color: #d7edc4;
+  color: #e2d4ff;
   font-size: 1.08rem;
   letter-spacing: 0.015em;
 }
@@ -755,21 +731,21 @@ body:has(.classic-answer-fields) {
   width: 100%;
   min-height: 72px;
   padding: 18px 20px;
-  border-color: #536450;
+  border-color: #5b4b70;
   border-radius: 12px;
-  background: linear-gradient(135deg, #121a14, #1a241b);
+  background: linear-gradient(135deg, #17131d, #211a2b);
   font-size: 1.08rem;
   transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
 }
 
 #question-panel .classic-answer-fields input[type="text"]::placeholder {
-  color: #829182;
+  color: #988ba8;
 }
 
 #question-panel .classic-answer-fields input[type="text"]:focus {
   border-color: var(--accent);
-  background: #172019;
-  box-shadow: 0 0 0 4px rgb(165 230 111 / 10%);
+  background: #211a2b;
+  box-shadow: 0 0 0 4px rgb(197 168 255 / 12%);
 }
 
 #question-panel .answer-submit-row {
